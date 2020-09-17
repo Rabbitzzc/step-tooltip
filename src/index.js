@@ -1,4 +1,8 @@
-import { getElementById, getElement, calculatePositions } from './util.js'
+import {
+    getElementById,
+    getElement,
+    calculatePositions
+} from './util.js'
 
 const backdropHTML = `<div id="tooltip-helper-backdrop" class="tooltip-helper-backdrop"></div>`
 const footerHTML = `<div class="tooltip-helper-footer"><button id="tooltip-helper-end-sequence" class="tooltip-helper-end-sequence">Quit</button><div><button id="tooltip-helper-prev-sequence" class="tooltip-helper-prev-sequence">Previous</button><button id="tooltip-helper-next-sequence" class="tooltip-helper-next-sequence ml-2">Next</button></div></div>`
@@ -12,7 +16,9 @@ let tooltipData = {
     onComplete: function () {}
 }
 const createDescriptionElement = (backdrop, description) => {
-    const { sequence } = tooltipData
+    const {
+        sequence
+    } = tooltipData
     let descriptionElement = getElement('#tooltip-helper-backdrop .tooltip-helper-active-description')
     if (!descriptionElement) {
         descriptionElement = document.createElement('div')
@@ -46,11 +52,19 @@ const createDescriptionElement = (backdrop, description) => {
 }
 
 const createStage = () => {
-    const { sequence } = tooltipData
+    const {
+        sequence
+    } = tooltipData
     const currentSequence = sequence[sequenceIndex]
-    const { element, description } = currentSequence
+    const {
+        element,
+        description
+    } = currentSequence
     const backdrop = getElementById('tooltip-helper-backdrop')
-    let position = { x: 0, y: 0 }
+    let position = {
+        x: 0,
+        y: 0
+    }
     let placement = currentSequence.hasOwnProperty('placement') ? currentSequence.placement : 'bottom'
     if (window.innerWidth <= 400 && (placement === 'left' || placement === 'right')) placement = 'bottom'
     let block = 'center'
@@ -58,7 +72,10 @@ const createStage = () => {
     const elem = getElement(element)
     if (!elem) return endSequence()
     getElement('body').classList.add('stop-scroll')
-    elem.scrollIntoView({ behaviour: 'smooth', block })
+    elem.scrollIntoView({
+        behaviour: 'smooth',
+        block
+    })
     let elemBoundaries = elem.getBoundingClientRect()
 
     let descriptionElement = createDescriptionElement(backdrop, description)
@@ -89,7 +106,9 @@ const endSequence = () => {
     return tooltipData.onComplete()
 }
 const toggleSequence = (increment) => {
-    const { sequence } = tooltipData
+    const {
+        sequence
+    } = tooltipData
     sequenceIndex = sequenceIndex + increment
     if (sequenceIndex >= 0 && sequenceIndex <= sequence.length - 1) {
         return createStage(sequence[sequenceIndex], sequence)
@@ -119,7 +138,10 @@ const setupListeners = () => {
     })
 }
 const createSequence = (data) => {
-    tooltipData = { ...tooltipData, ...data }
+    tooltipData = {
+        ...tooltipData,
+        ...data
+    }
     getElement('body').innerHTML += backdropHTML
     setupListeners()
     createStage()
