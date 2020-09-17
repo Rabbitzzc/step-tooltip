@@ -1,0 +1,30 @@
+# editorconfig.org
+
+# 表明这是最顶层的配置文件，这样才会停止继续向上查找 .editorconfig 文件；
+# 查找的 .editorconfig 文件是从顶层开始读取的，类似变量作用域的效果，内部
+# 的 .editorconfig 文件属性优先级更高
+root = true
+
+# 指定作用文件格式 - 表示任意文件 ，比如js文件 py文件 php 文件等
+[*]
+
+# 缩进的类型 [space | tab]
+indent_style = space
+
+# 缩进的数量，我喜欢4
+indent_size = 4
+
+# 定义换行符 [lf | cr | crlf]
+end_of_line = lf
+
+# 编码格式。支持latin1、utf-8、utf-8-bom、utf-16be和utf-16le，不建议使用uft-8-bom
+charset = utf-8
+
+# 是否去除换行首尾的任意空白字符
+trim_trailing_whitespace = true
+
+# 文件最后是否使用一个空白行结尾
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false

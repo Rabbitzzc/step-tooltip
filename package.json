@@ -1,0 +1,63 @@
+{
+  "name": "js-npm-template",
+  "version": "1.0.1",
+  "description": "编写JS库,并发布到npm.",
+  "main": "dist/index.min.js",
+  "module": "dist/index.min.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "prettier": "prettier  --write src/*",
+    "test": "echo \"Error: no test specified\"",
+    "lint": "eslint --fix",
+    "commit-msg": "commitlint -e $GIT_PARAMS",
+    "commit-name": "node .gitauthor.js",
+    "pre-push": "npx branch-name-lint",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm-template/js-npm-template.git"
+  },
+  "keywords": [
+    "js-npm-template",
+    "npm-template",
+    "js"
+  ],
+  "author": "Rabbitzzc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/npm-template/js-npm-template/issues"
+  },
+  "homepage": "https://github.com/npm-template/js-npm-template#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "lib/index.min.js"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "all-contributors-cli": "6.17.2",
+    "babel-eslint": "^10.1.0",
+    "branch-name-lint": "^1.4.0",
+    "eslint": "7.9.0",
+    "eslint-config-alloy": "^3.8.0",
+    "husky": "^4.2.5",
+    "prettier": "2.1.1",
+    "rollup": "^2.26.11",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-clear": "2.0.7",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.11.2"
+  }
+}

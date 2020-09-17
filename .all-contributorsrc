@@ -1,0 +1,14 @@
+{
+  "projectName": "js-npm-template",
+  "projectOwner": "Rabbitzzc",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 10,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [],
+  "contributorsPerLine": 7
+}

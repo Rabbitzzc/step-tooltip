@@ -1,0 +1,9 @@
+language: node_js                # 使用 nodejs
+node_js:                         # 版本为 8
+  - "8"
+
+cache: yarn                      # 使用 yarn 而不是 npm (按照实际情况调整)
+install: yarn
+
+script:
+    - yarn test
