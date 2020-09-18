@@ -1,8 +1,7 @@
 // 常量
-const OFFSET = 10
+export const OFFSET = 10
 
 // 简化 selector
-export const getElementById = document.getElementById
 export const getElement = (selector) => document.querySelector(selector)
 
 // 定位
@@ -15,17 +14,13 @@ export const calculatePositions = (el, desc, placement = 'bottom') => {
     if (c === 't' || c === 'b') {
         position = {
             x: Math.round(elRect.x + elRect.width - descRect.width),
-            y:
-                c === 't'
-                    ? Math.round(elRect.y - descRect.height - OFFSET)
-                    : Math.round(elRect.y + elRect.height + OFFSET)
+            y: c === 't' ?
+                Math.round(elRect.y - descRect.height - OFFSET) : Math.round(elRect.y + elRect.height + OFFSET)
         }
     } else {
         position = {
-            x:
-                c === 'l'
-                    ? Math.round(elRect.x - descRect.width - OFFSET)
-                    : Math.round(elRect.x + elRect.width + OFFSET),
+            x: c === 'l' ?
+                Math.round(elRect.x - descRect.width - OFFSET) : Math.round(elRect.x + elRect.width + OFFSET),
             y: Math.round(elRect.y + (elRect.height - descRect.height) / 2)
         }
     }
