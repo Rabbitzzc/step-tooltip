@@ -16,26 +16,30 @@
 <script>
 
 /** eslint disable */
-import stepTip from '../../src/index.js'
-import '../../src/index.css'
+import stepTip from '../../dist/index.min.js'
+import '../../dist/index.min.css'
 
 const options = {
     initialText: '哈喽，准备好了解 step-tooltip 了么？',
     steps: [{
         element: '#step1',
-        container: 'step1step1step1step1step1step1step1step1step1step1step1step1step1step1'
+        container: '准备好了解 step-tooltip 了么？'
     },{
         element: '#step2',
-        container: 'step2step2step2step2step2step2step2step2step2step2step2step2step2'
+        container: 'step2step2step2step2step2step2step2step2step2step2step2step2step2',
+        placement: 'top'
     },{
         element: '#step3',
-        container: 'step3'
+        container: 'step3',
+        placement: 'right'
     },{
         element: '#step4',
-        container: 'step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4'
+        container: 'step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4',
+        placement: 'left'
     },{
         element: '#step5',
-        container: 'step5'
+        container: 'step5',
+        placement: 'bottom'
     }],
 }
 export default {
@@ -59,6 +63,7 @@ export default {
 }
 
 .example {
+    position: relative;
     margin: 0 auto;
     width: 700px;
     padding: 30px;
@@ -66,39 +71,40 @@ export default {
 }
 
 #step1 {
+    position: absolute;
     margin: 10px;
-    width: 300px;
+    width: 50px;
     height: 50px;
     background: rebeccapurple;
 }
 #step2 {
     margin: 10px;
-    width: 300px;
+    width: 100px;
     height: 50px;
     background: tan;
 }
 #step3 {
     margin: 10px;
-    width: 300px;
+    width: 30px;
     height: 50px;
     background: teal;
 }
 #step4 {
     margin: 10px;
-    width: 300px;
+    width: 420px;
     height: 50px;
     background: lavenderblush;
 }
 #step5 {
     margin: 10px;
-    width: 300px;
+    width: 100px;
     height: 50px;
     background: sandybrown;
 }
 
 #step6 {
     margin: 10px;
-    width: 300px;
+    width: 50px;
     height: 50px;
     background: rebeccapurple;
 }

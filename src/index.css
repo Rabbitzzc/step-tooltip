@@ -25,7 +25,7 @@
 
     transition-property: transform;
     will-change: transform;
-    transform: translate(0,0);
+    transform: translate(0, 0);
     transition: transform 0.15s ease-out;
 }
 
@@ -56,4 +56,50 @@
 .scroll-disabled {
     overflow: hidden;
     -webkit-overflow-scrolling: hidden;
+}
+
+.step-tooltip-disabled-btn[disabled] {
+    cursor: not-allowed;
+    background: #dadada;
+    color: #f6f6f6;
+}
+
+/* arrow */
+.step-tooltip-arrow-bottom :after,
+.step-tooltip-arrow-top :after,
+.step-tooltip-arrow-left :after,
+.step-tooltip-arrow-right :after {
+
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 10px;
+}
+
+.step-tooltip-arrow-bottom :after {
+    bottom: 100%;
+    left: 50%;
+    border-bottom-color: #fff;
+    margin-left: -10px;
+}
+.step-tooltip-arrow-top :after {
+    top: 100%;
+    left: 50%;
+    border-top-color: #fff;
+    margin-left: -10px;
+}
+.step-tooltip-arrow-left :after {
+    left: 100%;
+    top: 50%;
+    border-left-color: #fff;
+    margin-top: -10px;
+}
+.step-tooltip-arrow-right :after {
+    right: 100%;
+    top: 50%;
+    border-right-color: #fff;
+    margin-top: -10px;
 }

@@ -1,5 +1,5 @@
 // 常量
-export const OFFSET = 10
+export const OFFSET = 15
 
 // 简化 selector
 export const getElement = (selector) => document.querySelector(selector)

@@ -4,6 +4,7 @@ import {
     OFFSET
 } from './util.js'
 
+import './index.css'
 class StepTip {
     // 默认定位
     static defaultPlacement = 'bottom'
@@ -24,16 +25,9 @@ class StepTip {
             }
         }
 
-        // 当前 stepIndex
-        this.stepIndex = 0
-
-        getElement("body").innerHTML += StepTip.backdropHTML
-        this.backdrop = getElement('#step-tooltip-backdrop')
-
-
-        this.setup()
-        this.setListener()
+       this.startStep()
     }
+
     setListener() {
         getElement('#step-tooltip-back').addEventListener('click', () => this.toggleStep(-1))
         getElement('#step-tooltip-next').addEventListener('click', () => this.toggleStep(1))
@@ -46,6 +40,17 @@ class StepTip {
         getElement('#step-tooltip-end').removeEventListener('click', () => {})
     }
 
+    startStep() {
+        // 当前 stepIndex
+        this.stepIndex = 0
+
+        getElement("body").innerHTML += StepTip.backdropHTML
+        this.backdrop = getElement('#step-tooltip-backdrop')
+
+
+        this.setup()
+        this.setListener()
+    }
     // 初始化工作
     setup() {
         const {
@@ -87,6 +92,13 @@ class StepTip {
 
         // 生成一个DOM元素
         const containerElm = this.createContainer(container)
+
+
+        // 创建 arrow css
+        const placements = ['top', 'left', 'bottom', 'right']
+        placements.forEach(v=>containerElm.classList.remove(`step-tooltip-arrow-${v}`))
+
+        containerElm.classList.add(`step-tooltip-arrow-${placement}`)
 
         let position = calculatePositions(elm, containerElm, placement)
 
@@ -152,6 +164,8 @@ class StepTip {
             steps
         } = this.options
 
+        const current = steps[this.stepIndex]
+
         let containerElm = getElement('#step-tooltip-backdrop .step-tooltip-active-container')
 
         // 如果不存在则需要重新创建
@@ -189,7 +203,6 @@ class StepTip {
 
         return containerElm
     }
-
 }
 
 // 返回一个函数，返回实例
