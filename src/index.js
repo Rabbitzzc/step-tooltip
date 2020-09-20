@@ -69,6 +69,12 @@ class StepTip {
 
         const elm = getElement(element)
 
+        // 错误
+        if(!elm) throw new Error('Cant\'t find' + element + ', please check for spelling mistakes.')
+
+        // 禁止 body 滚动
+        getElement('body').classList.add('scroll-disabled')
+
         console.log(elm, element)
 
         // 让元素滚动到可视区域内 scrollIntoViewIfNeeded 兼容性不行
@@ -103,6 +109,8 @@ class StepTip {
             }
         }
 
+        console.log(position)
+
         // 有了 DOM ，也有了偏移量
         containerElm.style.transform = `translate(${position.x}px,${position.y}px)`
 
@@ -125,7 +133,7 @@ class StepTip {
 
     // 终止整个流程
     endStep() {
-        getElement('body').classList.remove('stop-scroll')
+        getElement('body').classList.remove('scroll-disabled')
 
         this.removeListener()
 

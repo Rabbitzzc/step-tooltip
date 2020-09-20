@@ -23,16 +23,16 @@ const options = {
     initialText: '哈喽，准备好了解 step-tooltip 了么？',
     steps: [{
         element: '#step1',
-        container: 'step1'
+        container: 'step1step1step1step1step1step1step1step1step1step1step1step1step1step1'
     },{
         element: '#step2',
-        container: 'step2'
+        container: 'step2step2step2step2step2step2step2step2step2step2step2step2step2'
     },{
         element: '#step3',
         container: 'step3'
     },{
         element: '#step4',
-        container: 'step4'
+        container: 'step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4step4'
     },{
         element: '#step5',
         container: 'step5'
