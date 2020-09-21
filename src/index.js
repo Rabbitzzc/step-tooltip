@@ -1,10 +1,12 @@
 import {
     getElement,
     calculatePositions,
+    calculateArrowPosition,
     OFFSET
 } from './util.js'
 
 import './index.css'
+import { doc } from 'prettier'
 class StepTip {
     // 默认定位
     static defaultPlacement = 'bottom'
@@ -25,7 +27,7 @@ class StepTip {
             }
         }
 
-       this.startStep()
+        this.startStep()
     }
 
     setListener() {
@@ -46,7 +48,7 @@ class StepTip {
 
         getElement("body").innerHTML += StepTip.backdropHTML
         this.backdrop = getElement('#step-tooltip-backdrop')
-
+        this.selfStyle = document.head.appendChild(document.createElement("style"))
 
         this.setup()
         this.setListener()
@@ -75,12 +77,10 @@ class StepTip {
         const elm = getElement(element)
 
         // 错误
-        if(!elm) throw new Error('Cant\'t find' + element + ', please check for spelling mistakes.')
+        if (!elm) throw new Error('Cant\'t find' + element + ', please check for spelling mistakes.')
 
         // 禁止 body 滚动
         getElement('body').classList.add('scroll-disabled')
-
-        console.log(elm, element)
 
         // 让元素滚动到可视区域内 scrollIntoViewIfNeeded 兼容性不行
         elm.scrollIntoView({
@@ -93,10 +93,11 @@ class StepTip {
         // 生成一个DOM元素
         const containerElm = this.createContainer(container)
 
-
         // 创建 arrow css
         const placements = ['top', 'left', 'bottom', 'right']
-        placements.forEach(v=>containerElm.classList.remove(`step-tooltip-arrow-${v}`))
+        placements.forEach(v => containerElm.classList.remove(`step-tooltip-arrow-${v}`))
+        containerElm.removeAttribute('data-top')
+        containerElm.removeAttribute('data-left')
 
         containerElm.classList.add(`step-tooltip-arrow-${placement}`)
 
@@ -121,7 +122,14 @@ class StepTip {
             }
         }
 
-        console.log(position)
+        const arrowStyle = calculateArrowPosition(elm, position, placement)
+        document.head.removeChild(this.selfStyle)
+        this.selfStyle = document.head.appendChild(document.createElement("style"))
+        if (placement === 'left' || placement === 'right') {
+            this.selfStyle.innerHTML = `.step-tooltip-arrow-left :after {top:${arrowStyle.top}} .step-tooltip-arrow-right :after {top:${arrowStyle.top}}`
+        } else {
+            this.selfStyle.innerHTML = `.step-tooltip-arrow-bottom :after {left:${arrowStyle.left}} .step-tooltip-arrow-top :after {left:${arrowStyle.left}}`
+        }
 
         // 有了 DOM ，也有了偏移量
         containerElm.style.transform = `translate(${position.x}px,${position.y}px)`
@@ -146,6 +154,7 @@ class StepTip {
     // 终止整个流程
     endStep() {
         getElement('body').classList.remove('scroll-disabled')
+        document.head.removeChild(this.selfStyle)
 
         this.removeListener()
 
@@ -163,8 +172,6 @@ class StepTip {
         const {
             steps
         } = this.options
-
-        const current = steps[this.stepIndex]
 
         let containerElm = getElement('#step-tooltip-backdrop .step-tooltip-active-container')
 
@@ -202,6 +209,10 @@ class StepTip {
         getElement('#step-tooltip-active-container-text').innerHTML = container
 
         return containerElm
+    }
+
+    setContainerArrowStyle(style) {
+
     }
 }
 

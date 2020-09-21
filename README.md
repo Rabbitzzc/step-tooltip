@@ -1,6 +1,6 @@
 
  <div align="center">
- <img align="center" width="180" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/logo-shadow.png" />
+ <img align="center" width="180" src="./png/avator.png" />
   <h2>Step Tooltip</h2>
   <blockquote>step by step tooltip guilder for any website.lightweight, & minify✨✨✨.</blockquote>
   <img alt="npm" src="https://img.shields.io/npm/dw/test">
@@ -18,6 +18,7 @@
 ## ⭐️ Features
 
 - 包体积更小，轻量无依赖
+- 箭头一体化（伪类生成），可设置共同背景和border等
 
 
 ## 📦 Getting Started
@@ -25,38 +26,23 @@
 ### install
 ```sh
 # npm 
-npm install --save lib
+npm install --save step-tooltip
 
 # yarn
-yarn add lib
+yarn add step-tooltip
 ```
 
 ### usage
 
-参数配置如下：
-
-| Option | Type   | Description |
-| ------ | ------ | ----------- |
-| param1 | string | intro param |
-| param1 | string | intro param |
-| param1 | string | intro param |
-| param1 | array  | intro param |
-| param1 | string | intro param |
-
-
-
 ```sh
-import utils from lib
+import stepTooltip from 'step-tooltip'
 
-utils()
+stepTooltip()
 ```
-
-For more examples, please refer to the [Documentation](https://github.com/npm-template/js-npm-template)
-
 
 ## LICENSE
 
 [MIT](./LICENSE)
 
 ## ✈️  Thks
-* [cssarrowplease](http://www.cssarrowplease.com/), arrow css.
+* [cssarrowplease](http://www.cssarrowplease.com/), css arrow.
