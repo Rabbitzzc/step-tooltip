@@ -6,7 +6,6 @@ import {
 } from './util.js'
 
 import './index.css'
-import { doc } from 'prettier'
 class StepTip {
     // 默认定位
     static defaultPlacement = 'bottom'
@@ -209,10 +208,6 @@ class StepTip {
         getElement('#step-tooltip-active-container-text').innerHTML = container
 
         return containerElm
-    }
-
-    setContainerArrowStyle(style) {
-
     }
 }
 
