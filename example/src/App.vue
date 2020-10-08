@@ -54,6 +54,12 @@ const options = {
         container: 'Thanks',
         placement: 'top'
     }],
+    options: {
+        backLabel: 'back',
+        nextLabel: 'next',
+        skipLabel: 'skip',
+        doneLabel: 'done',
+    }
 }
 export default {
     name: 'App',

@@ -221,7 +221,7 @@ class StepTip {
             backBtn.classList.remove('step-tooltip-disabled-btn')
         }
 
-        nextBtn.innerText = this.stepIndex === steps.length - 1 ? this.options.options.doneLabel : this.options.options.backLabel
+        nextBtn.innerText = this.stepIndex === steps.length - 1 ? this.options.options.doneLabel : this.options.options.nextLabel
 
         // 内容区域展示配置信息
         getElement('#step-tooltip-active-container-text').innerHTML = container
