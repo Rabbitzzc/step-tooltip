@@ -1,6 +1,6 @@
 {
   "name": "step-tooltip",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "step by step tooltip guilder for any website.lightweight, & minify✨✨✨.",
   "main": "dist/index.min.js",
   "module": "dist/index.min.js",
