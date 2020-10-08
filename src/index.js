@@ -14,17 +14,17 @@ class StepTip {
     // 底部按钮  Done Back Next
     constructor(options) {
         // 配置项
-        this.options = options || {
+        this.options = {...{
             initialText: '哈喽，准备好了解 step-tooltip 了么？',
             steps: [], // {element, container}
+            backdropColor: 'rgb(0 0 0 / 0.56)',
             options: {
-                backLabel: '',
-                nextLabel: '',
-                doneLabel: '',
-                // hideBack: false, // 第一步是否隐藏 back 按钮
-                // hideNext: false, // 最后一步是否隐藏 next 按钮
+                backLabel: '上一步',
+                nextLabel: '下一步',
+                skipLabel: '我知道了',
+                doneLabel: '完成',
             }
-        }
+        },...options}
 
         this.startStep()
     }
@@ -90,6 +90,7 @@ class StepTip {
         const elmRect = elm.getBoundingClientRect()
 
         // 生成一个DOM元素
+        const activeElm = this.createActiveMatte(elmRect, getComputedStyle(elm))
         const containerElm = this.createContainer(container)
 
         // 创建 arrow css
@@ -121,7 +122,7 @@ class StepTip {
             }
         }
 
-        const arrowStyle = calculateArrowPosition(elm, position, placement)
+        const arrowStyle = calculateArrowPosition(activeElm, position, placement)
         document.head.removeChild(this.selfStyle)
         this.selfStyle = document.head.appendChild(document.createElement("style"))
         if (placement === 'left' || placement === 'right') {
@@ -165,6 +166,24 @@ class StepTip {
         // TODO 调用 onComplete 事件
     }
 
+    // 创建 active 蒙版 div
+    createActiveMatte(elmRect,styles) {
+        const { backdropColor } = this.options
+        let activeElm = getElement("#step-tooltip-backdrop .step-tooltip-active-matte")
+        if (!activeElm) {
+            activeElm = document.createElement("div")
+            activeElm.setAttribute("id", "step-tooltip-active-matte")
+            activeElm.classList.add("step-tooltip-active-matte")
+            this.backdrop.append(activeElm)
+        }
+        activeElm.style.top = Math.round(elmRect.top) + "px"
+        activeElm.style.left = Math.round(elmRect.left) + "px"
+        activeElm.style.height = elmRect.height + "px"
+        activeElm.style.width = elmRect.width + "px"
+        activeElm.style.borderRadius = styles.borderRadius
+        activeElm.style.boxShadow = "0 0 0 9999px " + backdropColor
+        return activeElm
+    }
 
     // 创建一个容器，添加配置信息
     createContainer(container) {
@@ -184,7 +203,7 @@ class StepTip {
             // 自定义内容
             containerElm.innerHTML += "<div id='step-tooltip-active-container-text'></div>"
             // 自定义footer
-            containerElm.innerHTML += "<div class='step-tooltip-footer'><button id='step-tooltip-end' class='step-tooltip-end'>我知道了</button><div><button id='step-tooltip-back' class='step-tooltip-back'>上一步</button><button id='step-tooltip-next' class='step-tooltip-next'>下一步</button></div></div>"
+            containerElm.innerHTML += `<div class='step-tooltip-footer'><button id='step-tooltip-end' class='step-tooltip-end'>${this.options.options.skipLabel}</button><div><button id='step-tooltip-back' class='step-tooltip-back'>${this.options.options.backLabel}</button><button id='step-tooltip-next' class='step-tooltip-next'>${this.options.options.nextLabel}</button></div></div>`
 
             this.backdrop.append(containerElm)
         }
@@ -202,7 +221,7 @@ class StepTip {
             backBtn.classList.remove('step-tooltip-disabled-btn')
         }
 
-        nextBtn.innerText = this.stepIndex === steps.length - 1 ? '完成' : '下一步'
+        nextBtn.innerText = this.stepIndex === steps.length - 1 ? this.options.options.doneLabel : this.options.options.backLabel
 
         // 内容区域展示配置信息
         getElement('#step-tooltip-active-container-text').innerHTML = container

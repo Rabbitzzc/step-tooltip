@@ -16,8 +16,9 @@
 <script>
 
 /** eslint disable */
-import stepTip from 'step-tooltip'
-import 'step-tooltip/dist/index.min.css'
+// import stepTip from 'step-tooltip'
+import stepTip from '../../src/index.js'
+// import 'step-tooltip/dist/index.min.css'
 
 const options = {
     initialText: 'Hello, are you ready？',

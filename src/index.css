@@ -9,6 +9,14 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
+.step-tooltip-active-matte {
+    position: absolute;
+    transition-duration: 150ms;
+    transition-property: transform;
+    will-change: transform;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 .step-tooltip-active-container {
     position: absolute;
     z-index: 999998;

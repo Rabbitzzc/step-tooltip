@@ -43,6 +43,31 @@ import stepTooltip from 'step-tooltip'
 stepTooltip()
 ```
 
+### config
+
+```js
+{
+  initialText: '哈喽，准备好了解 step-tooltip 了么？',
+  steps: [],
+  backdropColor: 'rgb(0 0 0 / 0.56)',
+  options: {
+    backLabel: '上一步',
+    nextLabel: '下一步',
+    skipLabel: '我知道了',
+    doneLabel: '完成',
+  }
+}
+```
+
+| config        | func                              | default                                                      |
+| ------------- | --------------------------------- | ------------------------------------------------------------ |
+| initialText   | first show text                   | `哈喽，准备好了解 step-tooltip 了么？`                       |
+| steps         | every step                        | `[]`                                                         |
+| backdropColor | backdrop element box-shadow color | `'rgb(0 0 0 / 0.56)'`                                        |
+| options       | other config                      | 1. backLabel: 上一步<br />2. nextLabel: 下一步<br />3. skipLabel: 我知道了<br />4. doneLabel: 完成 |
+
+
+
 ## 🔖 LICENSE
 
 [MIT](./LICENSE)
